@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hackathon 2025 — Why Participate? Mentorship, networking, internships, and real-world impact." />
+  <meta name="theme-color" content="#050508" />
+
+  <title>Hackathon 2025 — Why Participate?</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/hackathon-landing/assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Custom Cursor ── -->
+  <div id="cursor" role="presentation" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════
+       SECTION 1 — WHY PARTICIPATE
+  ════════════════════════════════════════ -->
+  <section id="why" aria-labelledby="why-heading">
+
+    <!-- Animated background elements -->
+    <div class="glow-blob"  aria-hidden="true"></div>
+    <div class="orbit-bg"   aria-hidden="true"><span></span></div>
+
+    <p class="section-label" id="why-heading">Why Participate?</p>
+
+    <div class="why-grid">
+
+      <!-- Left column — benefit cards -->
+      <div class="why-col left" role="list">
+
+        <article class="benefit" role="listitem" tabindex="0">
+          <h3>Mentorship from Experts</h3>
+          <p>
+            Gain invaluable insights and guidance from experienced
+            technologists and domain experts.
+          </p>
+        </article>
+
+        <article class="benefit" role="listitem" tabindex="0">
+          <h3>Networking</h3>
+          <p>
+            Connect with peers, professionals, and innovation leaders
+            from across the nation.
+          </p>
+        </article>
+
+      </div>
+
+      <!-- Centre — floating astronaut -->
+      <div class="astronaut-wrap" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=600&q=80"
+          alt="Astronaut floating in space"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Right column — benefit cards -->
+      <div class="why-col right" role="list">
+
+        <article class="benefit" role="listitem" tabindex="0">
+          <h3>Internship Opportunities</h3>
+          <p>
+            Stand a chance to secure internships at top institutions
+            and innovation labs.
+          </p>
+        </article>
+
+        <article class="benefit" role="listitem" tabindex="0">
+          <h3>Real-World Impact</h3>
+          <p>
+            Contribute to meaningful challenges that aim to improve
+            lives and systems at scale.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECTION 2 — HACKATHON SCHEDULE
+  ════════════════════════════════════════ -->
+  <section id="schedule" aria-labelledby="schedule-heading">
+
+    <p class="section-label" id="schedule-heading">Hackathon Schedule</p>
+
+    <!-- Interactive Timeline Slider -->
+    <div class="slider-track-wrap" role="region" aria-label="Hackathon timeline">
+      <div class="slider-track" id="sliderTrack" role="list">
+
+        <div class="timeline-card" role="listitem" tabindex="0" data-index="0">
+          <p class="card-title">Registrations and Idea Submission Open</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <p class="card-date">Thu, Jul 04, 2025</p>
+          <p class="card-desc">
+            Open your registrations and submit your innovative idea
+            to kickstart the journey.
+          </p>
+        </div>
+
+        <div class="timeline-card" role="listitem" tabindex="0" data-index="1">
+          <p class="card-title">Introductory and Problem Statement Explorer Session</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <p class="card-date">Thu, Jul 08, 2025</p>
+          <p class="card-desc">
+            A guided walkthrough of problem domains and an opportunity
+            to clarify your approach with domain experts.
+          </p>
+        </div>
+
+        <div class="timeline-card" role="listitem" tabindex="0" data-index="2">
+          <p class="card-title">Mentor-Mentee Connects — Begins</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <p class="card-date">Thu, Jul 08, 2025</p>
+          <p class="card-desc">
+            Weekly one-on-one sessions with your assigned mentor
+            begin from this date.
+          </p>
+        </div>
+
+        <div class="timeline-card" role="listitem" tabindex="0" data-index="3">
+          <p class="card-title">Mentor-Mentee Connects — Ends</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <p class="card-date">Tue, Jul 16, 2025</p>
+          <p class="card-desc">
+            Final mentoring session. Finalize your prototype before
+            the submission deadline.
+          </p>
+        </div>
+
+        <div class="timeline-card" role="listitem" tabindex="0" data-index="4">
+          <p class="card-title">Final Submissions &amp; Demo Day</p>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <p class="card-date">Sat, Jul 20, 2025</p>
+          <p class="card-desc">
+            Submit your final project and present your solution
+            to a panel of expert judges.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Slider navigation -->
+    <div class="slider-controls" role="group" aria-label="Slider controls">
+      <button class="slider-btn" id="prevBtn" aria-label="Previous slide">&#8592;</button>
+      <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Slide navigation"></div>
+      <button class="slider-btn" id="nextBtn" aria-label="Next slide">&#8594;</button>
+    </div>
+
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECTION 3 — REWARDS AND BENEFITS
+  ════════════════════════════════════════ -->
+  <section id="rewards" aria-labelledby="rewards-heading">
+    <p class="section-label" id="rewards-heading">Rewards and Benefits</p>
+    <p>
+      Exceptional projects will be recognised with prizes, internship offers,
+      <br />and opportunities for real-world deployment.
+    </p>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECTION 4 — GALLERY
+  ════════════════════════════════════════ -->
+  <section id="gallery" aria-labelledby="gallery-heading">
+
+    <p
+      class="section-label"
+      id="gallery-heading"
+      style="display:block; text-align:center; margin-bottom:40px;"
+    >
+      In Action
+    </p>
+
+    <div class="gallery-grid" role="list">
+
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Innovation in progress">
+        <img
+          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+          alt="Person working on laptop"
+          loading="lazy"
+        />
+        <div class="gallery-overlay"><span>Build</span></div>
+      </div>
+
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Global perspective">
+        <img
+          src="https://images.unsplash.com/photo-1489389944381-3471b5b30f04?auto=format&fit=crop&w=600&q=80"
+          alt="Hand holding a glass globe"
+          loading="lazy"
+        />
+        <div class="gallery-overlay"><span>Impact</span></div>
+      </div>
+
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Immersive technology">
+        <img
+          src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=600&q=80"
+          alt="Person using VR headset"
+          loading="lazy"
+        />
+        <div class="gallery-overlay"><span>Explore</span></div>
+      </div>
+
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Team collaboration">
+        <img
+          src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
+          alt="Team brainstorming with sticky notes"
+          loading="lazy"
+        />
+        <div class="gallery-overlay"><span>Collaborate</span></div>
+      </div>
+
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Learning and growth">
+        <img
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+          alt="Students in an audience"
+          loading="lazy"
+        />
+        <div class="gallery-overlay"><span>Learn</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JavaScript — loaded at end of body for performance -->
+  <script src="/hackathon-landing/assets/js/main.js"></script>
+
+</body>
+</html>

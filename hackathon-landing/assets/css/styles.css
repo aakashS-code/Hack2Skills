@@ -1,0 +1,565 @@
+/* ============================================================
+   Hackathon Landing Page — styles.css
+   Author: Frontend Interview Assignment
+   Description: All visual styles for the hackathon landing page
+   ============================================================ */
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Design Tokens ── */
+:root {
+  --purple:       #7c3aed;
+  --purple-light: #a855f7;
+  --purple-dim:   #4c1d95;
+  --bg:           #050508;
+  --bg2:          #0d0b1a;
+  --text:         #e8e0ff;
+  --muted:        #9580cc;
+  --white:        #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── Noise Texture Overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+}
+
+section {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Keyboard Focus Styles ── */
+:focus-visible {
+  outline: 2px solid var(--purple-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+#cursor {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--purple-light);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, background 0.2s, border-color 0.2s,
+              width 0.2s, height 0.2s;
+  mix-blend-mode: screen;
+}
+
+#cursor.hovering {
+  width: 36px;
+  height: 36px;
+  background: rgba(168, 85, 247, 0.18);
+  border-color: var(--purple-light);
+}
+
+/* ============================================================
+   SHARED SECTION LABEL
+   ============================================================ */
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  margin-bottom: 64px;
+}
+
+/* ============================================================
+   SECTION: WHY PARTICIPATE
+   ============================================================ */
+#why {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+/* Radial Pulse Rings */
+.orbit-bg {
+  position: absolute;
+  width: min(680px, 90vw);
+  height: min(680px, 90vw);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbit-bg::before,
+.orbit-bg::after,
+.orbit-bg span {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-bg::before { width: 100%; height: 100%; animation: pulse-ring 4s ease-in-out infinite; }
+.orbit-bg::after  { width: 68%;  height: 68%;  animation: pulse-ring 4s ease-in-out infinite 1s; }
+.orbit-bg span    { display: block; width: 38%; height: 38%; animation: pulse-ring 4s ease-in-out infinite 2s; }
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 0.55; transform: translate(-50%, -50%) scale(1.04); }
+}
+
+/* Glowing Blob */
+.glow-blob {
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.35) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: blob-drift 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes blob-drift {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(-20px) scale(1.06); }
+}
+
+/* Benefit Card Grid */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0 40px;
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  z-index: 2;
+}
+
+.why-col {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.why-col.right {
+  text-align: right;
+}
+
+/* Benefit Cards */
+.benefit {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 6px;
+  padding: 20px 24px;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease,
+              border-color 0.3s, background 0.3s;
+}
+
+.why-col.right .benefit {
+  transform: translateX(30px);
+}
+
+.benefit.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Connector Lines */
+.benefit::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -42px;
+  width: 42px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(124, 58, 237, 0.7), transparent);
+  transform: translateY(-50%);
+}
+
+.why-col.right .benefit::before {
+  right: auto;
+  left: -42px;
+  background: linear-gradient(to left, rgba(124, 58, 237, 0.7), transparent);
+}
+
+.benefit:hover {
+  border-color: var(--purple-light);
+  background: rgba(124, 58, 237, 0.1);
+  transform: translateX(-6px) !important;
+}
+
+.why-col.right .benefit:hover {
+  transform: translateX(6px) !important;
+}
+
+.benefit h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.benefit p {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Astronaut */
+.astronaut-wrap {
+  width: clamp(200px, 26vw, 340px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.astronaut-wrap img {
+  width: 100%;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 40px rgba(124, 58, 237, 0.5));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-22px) rotate(2deg); }
+}
+
+/* ============================================================
+   SECTION: HACKATHON SCHEDULE
+   ============================================================ */
+#schedule {
+  padding: 100px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#schedule .section-label {
+  display: block;
+  text-align: center;
+}
+
+/* Slider Track */
+.slider-track-wrap {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.slider-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+/* Timeline Cards */
+.timeline-card {
+  flex: 0 0 clamp(220px, 28vw, 280px);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 8px;
+  padding: 28px 24px 24px;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s, background 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.timeline-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-card:hover {
+  border-color: var(--purple-light);
+  background: rgba(124, 58, 237, 0.09);
+  transform: translateY(-5px);
+}
+
+.timeline-card.active {
+  border-color: var(--purple);
+  background: rgba(124, 58, 237, 0.15);
+}
+
+.timeline-card .card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--purple-light);
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 3px;
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 99px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(to right, var(--purple), var(--purple-light));
+  width: 0;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.timeline-card.visible .progress-fill {
+  width: 100%;
+}
+
+.card-date {
+  font-size: 0.8rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.card-desc {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.55;
+  display: none;
+}
+
+.timeline-card.active .card-desc {
+  display: block;
+}
+
+/* Slider Controls */
+.slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.slider-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--purple-light);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.slider-btn:hover {
+  background: var(--purple);
+  color: #fff;
+  border-color: var(--purple);
+}
+
+.slider-btn:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.slider-btn:focus-visible,
+.slider-dot:focus-visible {
+  outline: 2px solid var(--purple-light);
+}
+
+.slider-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.3);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  border: none;
+}
+
+.slider-dot.active {
+  background: var(--purple-light);
+  transform: scale(1.3);
+}
+
+/* ============================================================
+   SECTION: REWARDS AND BENEFITS
+   ============================================================ */
+#rewards {
+  padding: 40px 20px 100px;
+  text-align: center;
+}
+
+#rewards .section-label {
+  margin-bottom: 20px;
+}
+
+#rewards p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   SECTION: GALLERY
+   ============================================================ */
+#gallery {
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 12px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: none;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.4s;
+  filter: brightness(0.85) saturate(0.9);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.07);
+  filter: brightness(1) saturate(1.15);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(124, 58, 237, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay span {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Gallery Mosaic Layout */
+.gallery-item:nth-child(1) { grid-column: 1; grid-row: 1;        height: 200px; }
+.gallery-item:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; height: 310px; }
+.gallery-item:nth-child(3) { grid-column: 1; grid-row: 2 / span 2; height: 280px; }
+.gallery-item:nth-child(4) { grid-column: 2; grid-row: 3;        height: 170px; }
+.gallery-item:nth-child(5) { grid-column: 1; grid-row: 4;        height: 170px; }
+
+/* ============================================================
+   RESPONSIVE — TABLET & MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .why-col.right {
+    text-align: center;
+  }
+
+  /* Hide connector lines on mobile */
+  .benefit::before,
+  .why-col.right .benefit::before {
+    display: none;
+  }
+
+  .benefit:hover {
+    transform: translateY(-4px) !important;
+  }
+
+  .astronaut-wrap {
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .orbit-bg {
+    width: 300px;
+    height: 300px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .gallery-item {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    height: 200px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-card {
+    flex: 0 0 88vw;
+  }
+}
